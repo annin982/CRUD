@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRUD</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <h1>SEJA<br> BEM VINDO</h1>
+  <h2>Usuario</h2>
+
+  <form id="userForm" onsubmit="saveUser(event)">
+    <input type="text" id="nameInput" placeholder="Nome" required>
+    <input type="email" id="emailInput" placeholder="E-mail" required>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <table id="userTable">
+   
+    <tbody id="userTableBody"></tbody>
+  </table>
+
+  <script>
+    let users = [];
+
+    function saveUser(event) {
+      event.preventDefault();
+
+      const nameInput = document.getElementById('nameInput');
+      const emailInput = document.getElementById('emailInput');
+
+      const user = {
+        name: nameInput.value,
+        email: emailInput.value
+      };
+
+      users.push(user);
+      renderUserTable();
+      clearForm();
+    }
+
+    function renderUserTable() {
+      const tableBody = document.getElementById('userTableBody');
+      tableBody.innerHTML = '';
+
+      users.forEach((user, index) => {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const emailCell = document.createElement('td');
+        const actionsCell = document.createElement('td');
+
+        nameCell.textContent = user.name;
+        emailCell.textContent = user.email;
+        actionsCell.innerHTML = `
+          <button onclick="editUser(${index})">Editar</button>
+          <button onclick="deleteUser(${index})">Excluir</button>
+        `;
+
+        row.appendChild(nameCell);
+        row.appendChild(emailCell);
+        row.appendChild(actionsCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    function editUser(index) {
+      const user = users[index];
+
+      const nameInput = document.getElementById('nameInput');
+      const emailInput = document.getElementById('emailInput');
+
+      nameInput.value = user.name;
+      emailInput.value = user.email;
+
+      users.splice(index, 1);
+      renderUserTable();
+    }
+
+    function deleteUser(index) {
+      users.splice(index, 1);
+      renderUserTable();
+    }
+
+    function clearForm() {
+      const nameInput = document.getElementById('nameInput');
+      const emailInput = document.getElementById('emailInput');
+
+      nameInput.value = '';
+      emailInput.value = '';
+    }
+  </script>
+</body>
+</html>
