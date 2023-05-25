@@ -9,6 +9,7 @@
   <h1>SEJA<br> BEM VINDO</h1>
   <h2>Usuario</h2>
 
+ <div >
   <form id="userForm" onsubmit="saveUser(event)">
     <input type="text" id="nameInput" placeholder="Nome" required>
     <input type="email" id="emailInput" placeholder="E-mail" required>
@@ -17,10 +18,11 @@
 
   <table id="userTable">
    
-    <tbody id="userTableBody"></tbody>
+  <tbody id="userTableBody"></tbody>
   </table>
-
-  <script>
+</div>
+  
+<script>
     let users = [];
 
     function saveUser(event) {

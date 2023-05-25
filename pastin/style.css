@@ -52,18 +52,9 @@ button {
   box-shadow: 0px 10px 40px -12px #c5cece52;
 }
 
-#user-list{
+div{
   background-color: #6b326f;
   width: block;
   margin: auto;
   border-radius: 8px;
-}
-#user-form{
-  background-color: #6b326f;
-  width: block;  
- margin: auto; 
- border-radius: 8px; 
- 
-
-
 }
